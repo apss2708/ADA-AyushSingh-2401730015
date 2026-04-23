@@ -30,6 +30,7 @@ void merge(vector<int>& arr, int left, int mid, int right) {
     int j = 0;
     int k = left;
 
+    // Merge two sorted halves into the original array.
     while (i < n1 && j < n2) {
         stepCount++;
         if (L[i] <= R[j]) {
@@ -49,6 +50,7 @@ void merge(vector<int>& arr, int left, int mid, int right) {
 
 void mergeSort(vector<int>& arr, int left, int right) {
     if (left < right) {
+        // Split, sort both halves, then merge.
         int mid = left + (right - left) / 2;
         mergeSort(arr, left, mid);
         mergeSort(arr, mid + 1, right);

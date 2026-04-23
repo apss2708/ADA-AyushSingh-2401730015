@@ -10,8 +10,10 @@ int binarySearchIterative(const vector<int>& arr, int key) {
     int low = 0;
     int high = static_cast<int>(arr.size()) - 1;
 
+    // Works correctly only when arr is sorted.
     while (low <= high) {
         stepCount++;
+        // Overflow-safe midpoint calculation.
         int mid = low + (high - low) / 2;
 
         if (arr[mid] == key) {
@@ -32,6 +34,7 @@ int binarySearchRecursive(const vector<int>& arr, int low, int high, int key) {
         return -1;
     }
 
+    // Recompute midpoint for the current interval.
     int mid = low + (high - low) / 2;
     if (arr[mid] == key) {
         return mid;

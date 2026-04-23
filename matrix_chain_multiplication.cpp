@@ -7,6 +7,7 @@ using namespace std;
 
 int mcm(const vector<int>& arr) {
     int n = static_cast<int>(arr.size());
+    // dp[i][j] stores minimum multiplication cost for chain i..j.
     vector<vector<int>> dp(n, vector<int>(n, 0));
 
     for (int length = 2; length < n; length++) {
@@ -14,6 +15,7 @@ int mcm(const vector<int>& arr) {
             int j = i + length;
             dp[i][j] = numeric_limits<int>::max();
 
+            // Try every split point and choose the minimum cost.
             for (int k = i + 1; k < j; k++) {
                 long long cost = static_cast<long long>(dp[i][k]) + dp[k][j] +
                                  static_cast<long long>(arr[i]) * arr[k] * arr[j];

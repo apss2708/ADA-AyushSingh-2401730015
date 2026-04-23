@@ -18,10 +18,12 @@ void backtrack(const vector<int>& arr,
         return;
     }
 
+    // Include current element.
     subset.push_back(arr[idx]);
     backtrack(arr, target, idx + 1, currentSum + arr[idx], subset, allSubsets);
     subset.pop_back();
 
+    // Exclude current element.
     backtrack(arr, target, idx + 1, currentSum, subset, allSubsets);
 }
 

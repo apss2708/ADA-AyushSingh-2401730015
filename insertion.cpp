@@ -7,6 +7,7 @@ using namespace std;
 void linearSearch(const vector<int>& arr, int target) {
     bool isFound = false;
 
+    // Scan from left to right until target is found.
     for (int i = 0; i < static_cast<int>(arr.size()); i++) {
         if (arr[i] == target) {
             cout << "Element found at value: " << arr[i] << "\n";

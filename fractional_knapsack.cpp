@@ -11,6 +11,7 @@ struct Item {
 };
 
 double fractionalKnapsack(int capacity, vector<Item> items) {
+    // Greedy choice: pick higher value/weight ratio items first.
     sort(items.begin(), items.end(), [](const Item& a, const Item& b) {
         return static_cast<double>(a.value) / a.weight > static_cast<double>(b.value) / b.weight;
     });
@@ -26,6 +27,7 @@ double fractionalKnapsack(int capacity, vector<Item> items) {
             capacity -= item.weight;
             totalValue += item.value;
         } else {
+            // Take only the fraction that fits in remaining capacity.
             double fraction = static_cast<double>(capacity) / item.weight;
             totalValue += item.value * fraction;
             capacity = 0;

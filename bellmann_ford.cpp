@@ -6,10 +6,12 @@
 using namespace std;
 
 vector<long long> bellmanFord(int n, const vector<tuple<int, int, int>>& edges, int src, bool& hasNegativeCycle) {
+    // Use a large sentinel for unreachable nodes.
     const long long INF = numeric_limits<long long>::max() / 4;
     vector<long long> dist(n, INF);
     dist[src] = 0;
 
+    // Repeat relaxation at most (V-1) times.
     for (int i = 0; i < n - 1; i++) {
         bool changed = false;
         for (const auto& edge : edges) {
@@ -17,6 +19,7 @@ vector<long long> bellmanFord(int n, const vector<tuple<int, int, int>>& edges, 
             tie(u, v, w) = edge;
 
             if (dist[u] != INF && dist[u] + w < dist[v]) {
+                // Found a shorter path to v through u.
                 dist[v] = dist[u] + w;
                 changed = true;
             }
@@ -27,6 +30,7 @@ vector<long long> bellmanFord(int n, const vector<tuple<int, int, int>>& edges, 
     }
 
     hasNegativeCycle = false;
+    // One more relaxation pass detects a reachable negative cycle.
     for (const auto& edge : edges) {
         int u, v, w;
         tie(u, v, w) = edge;

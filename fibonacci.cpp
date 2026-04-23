@@ -23,6 +23,7 @@ void fibIterative(int n) {
     }
 
     for (int i = 2; i < n; i++) {
+        // Next term is the sum of previous two terms.
         int c = a + b;
         cout << c << " ";
         a = b;
@@ -35,9 +36,11 @@ void fibIterative(int n) {
 
 int fibRecursive(int n) {
     stepCount++;
+    // Base values for Fibonacci sequence.
     if (n <= 1) {
         return n;
     }
+    // Exponential recursion for educational comparison.
     return fibRecursive(n - 1) + fibRecursive(n - 2);
 }
 

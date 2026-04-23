@@ -16,6 +16,7 @@ void bubbleSort(vector<int>& arr) {
     for (int i = 0; i < n - 1; i++) {
         bool swapped = false;
 
+        // Bubble the largest unsorted element to the end.
         for (int j = 0; j < n - i - 1; j++) {
             if (arr[j] > arr[j + 1]) {
                 swap(arr[j], arr[j + 1]);
@@ -23,6 +24,7 @@ void bubbleSort(vector<int>& arr) {
             }
         }
 
+        // Early exit when array is already sorted.
         if (!swapped) {
             break;
         }

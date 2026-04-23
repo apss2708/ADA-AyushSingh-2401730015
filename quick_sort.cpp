@@ -13,6 +13,7 @@ void printArray(const vector<int>& arr) {
 }
 
 int partition(vector<int>& arr, int low, int high) {
+    // Lomuto partition: choose last element as pivot.
     int pivot = arr[high];
     int i = low - 1;
 
@@ -33,6 +34,7 @@ int partition(vector<int>& arr, int low, int high) {
 void quickSort(vector<int>& arr, int low, int high) {
     if (low < high) {
         int partitionIndex = partition(arr, low, high);
+        // Recursively sort elements on both sides of pivot.
         quickSort(arr, low, partitionIndex - 1);
         quickSort(arr, partitionIndex + 1, high);
     }

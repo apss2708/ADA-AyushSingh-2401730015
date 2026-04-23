@@ -8,6 +8,7 @@
 using namespace std;
 
 vector<long long> dijkstra(int n, const vector<vector<pair<int, int>>>& adj, int src) {
+    // Start with all nodes unreachable except the source.
     const long long INF = numeric_limits<long long>::max() / 4;
     vector<long long> dist(n, INF);
     dist[src] = 0;
@@ -20,16 +21,19 @@ vector<long long> dijkstra(int n, const vector<vector<pair<int, int>>>& adj, int
         int u = pq.top().second;
         pq.pop();
 
+        // Ignore outdated queue entries after a shorter path is found.
         if (d != dist[u]) {
             continue;
         }
 
+        // Relax all outgoing edges from u.
         for (const auto& edge : adj[u]) {
             int v = edge.first;
             int w = edge.second;
             long long nd = d + w;
 
             if (nd < dist[v]) {
+                // Update best known distance and push it to the heap.
                 dist[v] = nd;
                 pq.push({nd, v});
             }

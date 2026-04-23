@@ -17,6 +17,7 @@ void selectionSort(vector<int>& arr) {
     int n = static_cast<int>(arr.size());
 
     for (int i = 0; i < n - 1; i++) {
+        // Find the minimum element in the unsorted part.
         int minIndex = i;
 
         for (int j = i + 1; j < n; j++) {
@@ -27,6 +28,7 @@ void selectionSort(vector<int>& arr) {
         }
 
         if (minIndex != i) {
+            // Place the minimum at its correct sorted position.
             swap(arr[i], arr[minIndex]);
             stepCount++;
         }

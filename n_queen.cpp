@@ -4,6 +4,7 @@
 using namespace std;
 
 bool isSafe(const vector<int>& pos, int row, int col) {
+    // Check conflicts with previously placed queens.
     for (int i = 0; i < row; i++) {
         if (pos[i] == col || abs(pos[i] - col) == abs(i - row)) {
             return false;
@@ -17,6 +18,7 @@ bool solveNQueen(int n, int row, vector<int>& pos) {
         return true;
     }
 
+    // Try every column for the current row.
     for (int col = 0; col < n; col++) {
         if (isSafe(pos, row, col)) {
             pos[row] = col;

@@ -8,8 +8,10 @@ void naiveStringMatch(const string& text, const string& pattern) {
     int m = static_cast<int>(pattern.size());
     bool found = false;
 
+    // Try every possible shift of pattern over the text.
     for (int i = 0; i <= n - m; i++) {
         int j = 0;
+        // Compare characters for the current alignment.
         while (j < m && text[i + j] == pattern[j]) {
             j++;
         }
